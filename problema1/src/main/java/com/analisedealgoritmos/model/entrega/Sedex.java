@@ -1,16 +1,13 @@
-package com.analisedealgoritmos;
-import java.util.List;
+package com.analisedealgoritmos.model.entrega;
 
-public class EntregaSedex implements Entrega {
+import com.analisedealgoritmos.model.Pedido;
+
+public class Sedex implements TipoEntrega {
 
     @Override
-    public double calcularValorEntrega(List<Produto> produtos) {
-        double pesoTotal = 0;
-        double valorTotal = 0;
-
-        for (Produto produto : produtos) {
-            pesoTotal += produto.getPeso();
-        }
+    public double calcular(Pedido p) throws IllegalArgumentException {
+        double valorTotal;
+        double pesoTotal = p.getPesoTotal();
 
         if (pesoTotal < 500) {
             valorTotal = 12.5;

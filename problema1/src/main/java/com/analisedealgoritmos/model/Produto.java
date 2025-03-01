@@ -1,4 +1,4 @@
-package com.analisedealgoritmos;
+package com.analisedealgoritmos.model;
 public class Produto {
 
     private String nome;
