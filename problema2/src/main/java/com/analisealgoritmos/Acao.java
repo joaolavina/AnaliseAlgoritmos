@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.analisealgoritmos.interfaces.Observador;
 import com.analisealgoritmos.ordem.Ordem;
+import com.analisealgoritmos.ordem.TipoOrdem;
 
 public class Acao {
 
@@ -15,10 +16,6 @@ public class Acao {
     public Acao(String nome, double valor) {
         setNome(nome);
         setValor(valor);
-    }
-
-    public double getValor() {
-        return valor;
     }
 
     public void adicionarObservador(Observador observador) {
@@ -39,41 +36,30 @@ public class Acao {
     }
 
     private void verificarMatchOrdem(Ordem ordem) {
-        // talvez tenha uma forma de usar o template method aqui, mas não sei como
-        switch (ordem.getTipoOrdem()) {
-            case OrdemCompra -> {
-                Ordem ordemVenda = encontrarOrdemVenda(ordem);
-                removerOrdensEAtualizarValor(ordem, ordemVenda);
-                notificarObservadores();
-            }
-            case OrdemVenda -> {
-                Ordem ordemCompra = encontrarOrdemCompra(ordem);
-                removerOrdensEAtualizarValor(ordemCompra, ordem);
-                notificarObservadores();
-            }
-            default -> throw new IllegalArgumentException("Tipo de ordem inválido");
+        Ordem ordemCorrespondente = encontrarCorrespondente(ordem);
+        
+        if(ordemCorrespondente != null){
+            // aqui tanto faz a ordem das ordens pq o valor vai ser igual 
+            removerOrdensEAtualizarValor(ordemCorrespondente, ordem); 
+            notificarObservadores();
         }
     }
 
-    private Ordem encontrarOrdemCompra(Ordem ordem) {
-        // não arrumei
-        return ordens.stream().filter(c -> c.getValor() == ordem.getValor() && c instanceof OrdemCompra).findFirst()
+    private Ordem encontrarCorrespondente(Ordem ordem) {
+        return ordens.stream()
+                .filter(c -> c.getValor() == ordem.getValor() && ordem.getTipoOrdem() != c.getTipoOrdem()) 
+                // a gente sempre vai procurar pelo tipo contrário do que a gente enviou
+                .findFirst()
                 .orElse(null);
     }
 
-    private Ordem encontrarOrdemVenda(Ordem ordem) {
-        // não arrumei
-        return ordens.stream().filter(c -> c.getValor() == ordem.getValor() && c instanceof OrdemVenda).findFirst()
-                .orElse(null);
+    private void removerOrdensEAtualizarValor(Ordem ordem1, Ordem ordem2) {
+        ordens.remove(ordem1);
+        ordens.remove(ordem2);
+
+        setValor(ordem1.getValor());
     }
 
-    private void removerOrdensEAtualizarValor(Ordem ordemCompra, Ordem ordemVenda) {
-        ordens.remove(ordemCompra);
-        ordens.remove(ordemVenda);
-
-        setValor(ordemCompra.getValor());
-    }
- 
     private void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
@@ -86,6 +72,10 @@ public class Acao {
             throw new IllegalArgumentException("Valor não pode ser menor ou igual a zero");
 
         this.valor = valor;
+    }
+
+    public double getValor() {
+        return valor;
     }
 
 }
