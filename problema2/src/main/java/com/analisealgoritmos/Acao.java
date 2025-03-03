@@ -4,26 +4,18 @@ import java.util.List;
 
 import com.analisealgoritmos.interfaces.Observador;
 import com.analisealgoritmos.ordem.Ordem;
-import com.analisealgoritmos.ordem.TipoOrdem;
 
 public class Acao {
 
     private String nome;
     private double valor;
     private List<Ordem> ordens;
-    private List<Observador> observadores;
+    private BolsaValores bolsaValores;
 
-    public Acao(String nome, double valor) {
+    public Acao(String nome, double valor, BolsaValores bolsaValores) {
         setNome(nome);
         setValor(valor);
-    }
-
-    public void adicionarObservador(Observador observador) {
-        observadores.add(observador);
-    }
-
-    public void removerObservador(Observador observador) {
-        observadores.remove(observador);
+        setBolsaValores(bolsaValores);
     }
 
     public void registrarOrdem(Ordem ordem) {
@@ -31,23 +23,19 @@ public class Acao {
         verificarMatchOrdem(ordem);
     }
 
-    private void notificarObservadores() {
-        observadores.forEach(o -> o.atualizar(this));
-    }
-
     private void verificarMatchOrdem(Ordem ordem) {
-        Ordem ordemCorrespondente = encontrarCorrespondente(ordem);
-        
-        if(ordemCorrespondente != null){
-            // aqui tanto faz a ordem das ordens pq o valor vai ser igual 
-            removerOrdensEAtualizarValor(ordemCorrespondente, ordem); 
-            notificarObservadores();
+        Ordem ordemCorrespondente = encontrarOrdemCorrespondente(ordem);
+
+        if (ordemCorrespondente != null) {
+            // aqui tanto faz a ordem das ordens pq o valor vai ser igual
+            removerOrdensEAtualizarValor(ordemCorrespondente, ordem);
+            bolsaValores.notificar(this);
         }
     }
 
-    private Ordem encontrarCorrespondente(Ordem ordem) {
+    private Ordem encontrarOrdemCorrespondente(Ordem ordem) {
         return ordens.stream()
-                .filter(c -> c.getValor() == ordem.getValor() && ordem.getTipoOrdem() != c.getTipoOrdem()) 
+                .filter(c -> c.getValor() == ordem.getValor() && ordem.getTipoOrdem() != c.getTipoOrdem())
                 // a gente sempre vai procurar pelo tipo contrário do que a gente enviou
                 .findFirst()
                 .orElse(null);
@@ -72,6 +60,10 @@ public class Acao {
             throw new IllegalArgumentException("Valor não pode ser menor ou igual a zero");
 
         this.valor = valor;
+    }
+
+    private void setBolsaValores(BolsaValores bolsaValores) {
+        this.bolsaValores = bolsaValores;
     }
 
     public double getValor() {
