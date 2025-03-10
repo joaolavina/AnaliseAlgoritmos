@@ -1,6 +1,7 @@
 package com.analisealgoritmos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,15 @@ public class Investidor implements Observador {
     private Map<Ordem, Double> valorOrdensPreRegistrada;
     private Map<Acao, List<Ordem>> ordensPreRegistradas;
 
+    public List<Ordem> getOrdensPreRegistradas(Acao acao) {
+        List<Ordem> ordensPreRegistradas = this.ordensPreRegistradas.get(acao);
+        return ordensPreRegistradas;
+    }
+
     public Investidor(String nome) {
         setNome(nome);
+        valorOrdensPreRegistrada = new HashMap<>();
+        ordensPreRegistradas = new HashMap<>();
     }
 
     public void programarOrdem(Acao acao, Ordem ordem, double valor ) {

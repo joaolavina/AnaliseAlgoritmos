@@ -1,5 +1,6 @@
 package com.analisealgoritmos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.analisealgoritmos.interfaces.Observador;
@@ -16,6 +17,7 @@ public class Acao {
         setNome(nome);
         setValor(valor);
         setBolsaValores(bolsaValores);
+        ordens = new ArrayList<>();
     }
 
     public void registrarOrdem(Ordem ordem) {
@@ -68,6 +70,10 @@ public class Acao {
 
     public double getValor() {
         return valor;
+    }
+
+    public List<Ordem> getOrdens() {
+        return ordens;
     }
 
 }
