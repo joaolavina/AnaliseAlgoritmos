@@ -3,20 +3,18 @@ package com.analisealgoritmos;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.analisealgoritmos.interfaces.Observador;
 import com.analisealgoritmos.ordem.Ordem;
 
-public class Acao {
+@SuppressWarnings("deprecation")
+public class Acao extends java.util.Observable {
 
     private String nome;
     private double valor;
     private List<Ordem> ordens;
-    private BolsaValores bolsaValores;
 
-    public Acao(String nome, double valor, BolsaValores bolsaValores) {
+    public Acao(String nome, double valor) {
         setNome(nome);
         setValor(valor);
-        setBolsaValores(bolsaValores);
         ordens = new ArrayList<>();
     }
 
@@ -31,7 +29,8 @@ public class Acao {
         if (ordemCorrespondente != null) {
             // aqui tanto faz a ordem das ordens pq o valor vai ser igual
             removerOrdensEAtualizarValor(ordemCorrespondente, ordem);
-            bolsaValores.notificar(this);
+            this.setChanged( );
+            this.notifyObservers();
         }
     }
 
@@ -61,11 +60,8 @@ public class Acao {
         if (valor <= 0)
             throw new IllegalArgumentException("Valor não pode ser menor ou igual a zero");
 
-        this.valor = valor;
-    }
-
-    private void setBolsaValores(BolsaValores bolsaValores) {
-        this.bolsaValores = bolsaValores;
+        this.setChanged( );
+        this.notifyObservers();
     }
 
     public double getValor() {
