@@ -7,14 +7,15 @@ import org.junit.Test;
 import com.analisealgoritmos.ordem.Ordem;
 import com.analisealgoritmos.ordem.TipoOrdem;
 
+@SuppressWarnings("deprecation")
 public class AppTest {
 
 
     @Test
     public void RegistrarOrdemVenda() {
-        BolsaValores bolsaValores = new BolsaValores();
-        Acao acao1 = new Acao("acao1", 20.00, bolsaValores);
+        Acao acao1 = new Acao("acao1", 20.00);
         Investidor investidor1 = new Investidor("nome");     
+        acao1.addObserver(investidor1);
         Ordem ordem1 = new Ordem(investidor1, 20.00, TipoOrdem.OrdemVenda);
 
         acao1.registrarOrdem(ordem1);
@@ -24,9 +25,9 @@ public class AppTest {
 
     @Test
     public void RegistrarOrdemCompra() {
-        BolsaValores bolsaValores = new BolsaValores();
-        Acao acao1 = new Acao("acao1", 20.00, bolsaValores);
+        Acao acao1 = new Acao("acao1", 20.00);
         Investidor investidor1 = new Investidor("nome");     
+        acao1.addObserver(investidor1);
         Ordem ordem1 = new Ordem(investidor1, 20.00, TipoOrdem.OrdemCompra);
 
         acao1.registrarOrdem(ordem1);
@@ -37,19 +38,17 @@ public class AppTest {
 
     @Test
     public void SeRegistrarEmUmaAcao() {
-        BolsaValores bolsaValores = new BolsaValores();
-        Acao acao1 = new Acao("acao1", 20.00, bolsaValores);
+        Acao acao1 = new Acao("acao1", 20.00);
         Investidor investidor1 = new Investidor("nome");     
         
-        bolsaValores.assinarAcao(acao1, investidor1);
+        acao1.addObserver(investidor1);
         
-        assertEquals(investidor1, bolsaValores.getInscritosAcao(acao1).get(0));
+        assertEquals(1, acao1.countObservers());
     }
 
     @Test
     public void OrdensPreCadastradasPt1() {
-        BolsaValores bolsaValores = new BolsaValores();
-        Acao acao1 = new Acao("acao1", 18.00, bolsaValores);
+        Acao acao1 = new Acao("acao1", 18.00);
         Investidor investidor1 = new Investidor("nome");
         Ordem ordem1 = new Ordem(investidor1, 20.00, TipoOrdem.OrdemCompra);
         Ordem ordem2 = new Ordem(investidor1, 14.00, TipoOrdem.OrdemVenda);
@@ -62,8 +61,7 @@ public class AppTest {
 
     @Test
     public void OrdensPreCadastradasPt2() {
-        BolsaValores bolsaValores = new BolsaValores();
-        Acao acao1 = new Acao("acao1", 18.00, bolsaValores);
+        Acao acao1 = new Acao("acao1", 18.00);
         Investidor investidor1 = new Investidor("nome");
         Ordem ordem1 = new Ordem(investidor1, 20.00, TipoOrdem.OrdemCompra);
         Ordem ordem2 = new Ordem(investidor1, 14.00, TipoOrdem.OrdemVenda);
