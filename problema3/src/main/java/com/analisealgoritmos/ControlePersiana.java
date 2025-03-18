@@ -30,17 +30,17 @@ public class ControlePersiana {
 
         }
     }
-
+    
+    public boolean verificarPersianaAbertaNatLight() {
+        return persianaNatLight.estaPalhetaAberta() && persianaNatLight.estaPalhetaErguida();
+    }
+   
     public void abrirPersianaSolarius() {
         persianaSolarius.subirPersiana();
     }
 
     public void fecharPersianaSolarius() {
         persianaSolarius.descerPersiana();
-    }
-
-    public boolean verificarPersianaAbertaNatLight() {
-        return persianaNatLight.estaPalhetaAberta() && persianaNatLight.estaPalhetaErguida();
     }
 
     public boolean verificarPersianaAbertaSolarius() {

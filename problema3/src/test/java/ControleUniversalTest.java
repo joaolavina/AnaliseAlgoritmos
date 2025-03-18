@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.analisealgoritmos.ControleUniversal;
+import com.analisealgoritmos.enums.ELampada;
 import com.analisealgoritmos.enums.EPersiana;
 
 public class ControleUniversalTest {
@@ -47,5 +48,12 @@ public class ControleUniversalTest {
 
         boolean persianaAberta = controleUniversal.verificarPersianaAberta(EPersiana.Solarius);
         assertFalse(persianaAberta);
+    }
+
+    @Test
+    public void ligarLampadaPhellipesTest() {
+        controleUniversal.ligarLampada(ELampada.Phellipes);
+
+        boolean lampadaLigada = controleUniversal.verificarLampadaLigada(ELampada.Phellipes);
     }
 }

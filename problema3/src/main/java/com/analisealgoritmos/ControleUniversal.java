@@ -68,6 +68,16 @@ public class ControleUniversal {
         }
     }
 
+    public boolean verificarLampadaLigada(ELampada eLampada) {
+        switch (eLampada) {
+            case Phellipes:
+                return controleLampada.verificarLampadaLigadaPhellipes();
+            case ShoyuMi:
+                return controleLampada.verificarLampadaLigadaShoyuMi();
+        }
+        return false;
+    }
+
     public void ligarArCondicionado(EArCondicionado eArCondicionado) {
         switch (eArCondicionado) {
             case VentoBaumn:
@@ -88,6 +98,16 @@ public class ControleUniversal {
                 controleArCondicionado.desligarArCondicionadoGellaKaza();
                 break;
         }
+    }
+
+    public boolean verificarArCondicionadoLigado(EArCondicionado eArCondicionado) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+                return controleArCondicionado.verificarArCondicionadoLigadoVentoBaumn();
+            case GellaKaza:
+                return controleArCondicionado.verificarArCondicionadoLigadoGellaKaza();
+        }
+        return false;
     }
 
     public void aumentarTemperatura(EArCondicionado eArCondicionado) {
@@ -135,5 +155,4 @@ public class ControleUniversal {
         definirTemperatura(eArCondicionado, 25);
         abrirPersiana(ePersiana);
     }
-
 }
