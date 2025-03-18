@@ -1,20 +1,27 @@
 package com.analisealgoritmos;
 
+import br.furb.analise.algoritmos.LampadaPhellipes;
+import br.furb.analise.algoritmos.LampadaShoyuMi;
+
 public class ControleLampada {
-    
-    public void ligarLampadaPhellipes(){
-        
-    }
-    
-    public void desligarLampadaPhellipes(){
 
+    public void ligarLampadaPhellipes() {
+        LampadaPhellipes lampadaPhellipes = new LampadaPhellipes();
+        lampadaPhellipes.setIntensidade(100);
     }
 
-    public void ligarLampadaShoyuMi(){
-
+    public void desligarLampadaPhellipes() {
+        LampadaPhellipes lampadaPhellipes = new LampadaPhellipes();
+        lampadaPhellipes.setIntensidade(0);
     }
 
-    public void desligarLampadaShoyuMi(){
+    public void ligarLampadaShoyuMi() {
+        LampadaShoyuMi lampadaShoyuMi = new LampadaShoyuMi();
+        lampadaShoyuMi.ligar();
+    }
 
+    public void desligarLampadaShoyuMi() {
+        LampadaShoyuMi lampadaShoyuMi = new LampadaShoyuMi();
+        lampadaShoyuMi.desligar();
     }
 }
