@@ -38,4 +38,12 @@ public class ControlePersiana {
     public void fecharPersianaSolarius() {
         persianaSolarius.descerPersiana();
     }
+
+    public boolean verificarPersianaAbertaNatLight() {
+        return persianaNatLight.estaPalhetaAberta() && persianaNatLight.estaPalhetaErguida();
+    }
+
+    public boolean verificarPersianaAbertaSolarius() {
+        return persianaSolarius.estaAberta();
+    }
 }
