@@ -36,6 +36,16 @@ public class ControleUniversal {
         }
     }
 
+    public boolean verificarPersianaAberta(EPersiana ePersiana) {
+        switch (ePersiana) {
+            case NatLight:
+                return controlePersiana.verificarPersianaAbertaNatLight();
+            case Solarius:
+                return controlePersiana.verificarPersianaAbertaSolarius();
+        }
+        return false;
+    }
+
     public void ligarLampada(ELampada eLampada) {
         switch (eLampada) {
             case Phellipes:
