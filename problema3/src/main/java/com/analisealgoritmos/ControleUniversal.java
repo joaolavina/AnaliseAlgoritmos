@@ -135,14 +135,25 @@ public class ControleUniversal {
     public void definirTemperatura(EArCondicionado eArCondicionado, int temperatura) {
         switch (eArCondicionado) {
             case VentoBaumn:
-                controleArCondicionado.definirTemperaturaVentoBaumn(temperatura);
-                break;
+            controleArCondicionado.definirTemperaturaVentoBaumn(temperatura);
+            break;
             case GellaKaza:
-                controleArCondicionado.definirTemperaturaGellaKaza(temperatura);
-                break;
+            controleArCondicionado.definirTemperaturaGellaKaza(temperatura);
+            break;
         }
     }
-
+    
+    public int getTemperaturaArCondicionado(EArCondicionado eArCondicionado) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+                return controleArCondicionado.getTemperaturaArCondicionadoVentoBaumn();
+            case GellaKaza:
+                return controleArCondicionado.getTemperaturaArCondicionadoGellaKaza();
+            default:
+                return 0;
+        }
+    }
+    
     public void ativarModoSono(EArCondicionado eArCondicionado, ELampada eLampada, EPersiana ePersiana) {
         desligarLampada(eLampada);
         desligarArCondicionado(eArCondicionado);
@@ -155,4 +166,5 @@ public class ControleUniversal {
         definirTemperatura(eArCondicionado, 25);
         abrirPersiana(ePersiana);
     }
+
 }
