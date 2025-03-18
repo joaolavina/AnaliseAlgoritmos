@@ -50,6 +50,10 @@ public class ControleArCondicionado {
     public void definirTemperaturaVentoBaumn(int temperatura) {
         arCondicionadoVentoBaumn.definirTemperatura(temperatura);
     }
+
+    public boolean verificarArCondicionadoLigadoVentoBaumn() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Função de verificação de ar condicionado ligado não implementada");
+    }
     
     public void definirTemperaturaGellaKaza(int temperatura) {
         int tempAtual = arCondicionadoGellaKaza.getTemperatura();
@@ -66,4 +70,10 @@ public class ControleArCondicionado {
             }
         }
     }
+
+    public boolean verificarArCondicionadoLigadoGellaKaza() {
+        return arCondicionadoGellaKaza.estaLigado();
+    }
+
+    
 }

@@ -21,11 +21,20 @@ public class ControleLampada {
         lampadaPhellipes.setIntensidade(0);
     }
 
+    public boolean verificarLampadaLigadaPhellipes() {
+        return lampadaPhellipes.getIntensidade() > 0;
+    }
+
     public void ligarLampadaShoyuMi() {
         lampadaShoyuMi.ligar();
     }
 
     public void desligarLampadaShoyuMi() {
         lampadaShoyuMi.desligar();
+    }
+
+
+    public boolean verificarLampadaLigadaShoyuMi() {
+        return lampadaShoyuMi.estaLigada();
     }
 }
