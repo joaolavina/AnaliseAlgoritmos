@@ -31,12 +31,12 @@ public class ControleArCondicionado {
 
     public void aumentarTemperaturaVentoBaumn() {
         int temperatura = arCondicionadoVentoBaumn.getTemperatura();
-        arCondicionadoVentoBaumn.definirTemperatura(temperatura++);
+        arCondicionadoVentoBaumn.definirTemperatura(++temperatura);
     }
 
     public void diminuirTemperaturaVentoBaumn() {
         int temperatura = arCondicionadoVentoBaumn.getTemperatura();
-        arCondicionadoVentoBaumn.definirTemperatura(temperatura--);
+        arCondicionadoVentoBaumn.definirTemperatura(--temperatura);
     }
 
     public void aumentarTemperaturaGellaKaza() {
@@ -53,6 +53,10 @@ public class ControleArCondicionado {
 
     public boolean verificarArCondicionadoLigadoVentoBaumn() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Função de verificação de ar condicionado ligado não implementada");
+    }
+
+    public int getTemperaturaArCondicionadoVentoBaumn() {
+        return arCondicionadoVentoBaumn.getTemperatura();
     }
     
     public void definirTemperaturaGellaKaza(int temperatura) {
@@ -75,5 +79,7 @@ public class ControleArCondicionado {
         return arCondicionadoGellaKaza.estaLigado();
     }
 
-    
+    public int getTemperaturaArCondicionadoGellaKaza() {
+        return arCondicionadoGellaKaza.getTemperatura();
+    }
 }
