@@ -5,35 +5,37 @@ import br.furb.analise.algoritmos.PersianaSolarius;
 
 public class ControlePersiana {
 
-    public void abrirPersianaNatLight(){
-        PersianaNatLight persianaNatLight = new PersianaNatLight();
+    private PersianaNatLight persianaNatLight;
+    private PersianaSolarius persianaSolarius;
 
+    public ControlePersiana() {
+        this.persianaNatLight = new PersianaNatLight();
+        this.persianaSolarius = new PersianaSolarius();
+    }
+
+    public void abrirPersianaNatLight() {
         try {
             persianaNatLight.abrirPalheta();
             persianaNatLight.subirPalheta();
         } catch (Exception e) {
-            
+
         }
     }
-    
-    public void fecharPersianaNatLight(){
-        PersianaNatLight persianaNatLight = new PersianaNatLight();
 
+    public void fecharPersianaNatLight() {
         try {
             persianaNatLight.descerPalheta();
             persianaNatLight.fecharPalheta();
         } catch (Exception e) {
-            
+
         }
     }
 
-    public void abrirPersianaSolarius(){
-        PersianaSolarius persianaSolarius = new PersianaSolarius();
+    public void abrirPersianaSolarius() {
         persianaSolarius.subirPersiana();
     }
-    
-    public void fecharPersianaSolarius(){
-        PersianaSolarius persianaSolarius = new PersianaSolarius();
+
+    public void fecharPersianaSolarius() {
         persianaSolarius.descerPersiana();
     }
 }
