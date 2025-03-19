@@ -55,7 +55,7 @@ public class ControleArCondicionado {
         throw new UnsupportedOperationException("Função de verificação de ar condicionado ligado não implementada");
     }
 
-    public int getTemperaturaArCondicionadoVentoBaumn() {
+    public int getTemperaturaVentoBaumn() {
         return arCondicionadoVentoBaumn.getTemperatura();
     }
     
@@ -79,7 +79,7 @@ public class ControleArCondicionado {
         return arCondicionadoGellaKaza.estaLigado();
     }
 
-    public int getTemperaturaArCondicionadoGellaKaza() {
+    public int getTemperaturaGellaKaza() {
         return arCondicionadoGellaKaza.getTemperatura();
     }
 }

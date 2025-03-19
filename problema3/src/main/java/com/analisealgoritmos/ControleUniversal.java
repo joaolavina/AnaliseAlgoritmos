@@ -146,9 +146,9 @@ public class ControleUniversal {
     public int getTemperaturaArCondicionado(EArCondicionado eArCondicionado) {
         switch (eArCondicionado) {
             case VentoBaumn:
-                return controleArCondicionado.getTemperaturaArCondicionadoVentoBaumn();
+                return controleArCondicionado.getTemperaturaVentoBaumn();
             case GellaKaza:
-                return controleArCondicionado.getTemperaturaArCondicionadoGellaKaza();
+                return controleArCondicionado.getTemperaturaGellaKaza();
             default:
                 return 0;
         }
