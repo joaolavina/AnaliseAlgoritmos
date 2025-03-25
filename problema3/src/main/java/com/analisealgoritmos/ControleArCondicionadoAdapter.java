@@ -1,14 +1,16 @@
 package com.analisealgoritmos;
 
-import br.furb.analise.algoritmos.ArCondicionadoVentoBaumn;
-import br.furb.analise.algoritmos.ArCondicionadoGellaKaza;
+import com.analisealgoritmos.enums.EArCondicionado;
 
-public class ControleArCondicionado {
+import br.furb.analise.algoritmos.ArCondicionadoGellaKaza;
+import br.furb.analise.algoritmos.ArCondicionadoVentoBaumn;
+
+public class ControleArCondicionadoAdapter {
     
     private ArCondicionadoVentoBaumn arCondicionadoVentoBaumn;
     private ArCondicionadoGellaKaza arCondicionadoGellaKaza;
 
-    public ControleArCondicionado() {
+    public ControleArCondicionadoAdapter() {
         arCondicionadoVentoBaumn = new ArCondicionadoVentoBaumn();
         arCondicionadoGellaKaza = new ArCondicionadoGellaKaza();
     }
@@ -81,5 +83,60 @@ public class ControleArCondicionado {
 
     public int getTemperaturaGellaKaza() {
         return arCondicionadoGellaKaza.getTemperatura();
+    }
+
+    public void desligarArCondicionado(EArCondicionado eArCondicionado) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+                desligarArCondicionadoVentoBaumn();
+                break;
+            case GellaKaza:
+                desligarArCondicionadoGellaKaza();
+                break;
+        }
+    }
+
+    public void definirTemperatura(EArCondicionado eArCondicionado, int temperatura) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+            definirTemperaturaVentoBaumn(temperatura);
+            break;
+            case GellaKaza:
+            definirTemperaturaGellaKaza(temperatura);
+            break;
+        }
+    }
+
+	public void ligarArCondicionado(EArCondicionado eArCondicionado) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+                ligarArCondicionadoVentoBaumn();
+                break;
+            case GellaKaza:
+                ligarArCondicionadoGellaKaza();
+                break;
+        }
+	}
+
+    public void aumentarTemperatura(EArCondicionado eArCondicionado) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+                aumentarTemperaturaVentoBaumn();
+                break;
+            case GellaKaza:
+                aumentarTemperaturaGellaKaza();
+                break;
+        }
+    }
+
+    public void diminuirTemperatura(EArCondicionado eArCondicionado) {
+        switch (eArCondicionado) {
+            case VentoBaumn:
+                diminuirTemperaturaVentoBaumn();
+                break;
+            case GellaKaza:
+                diminuirTemperaturaGellaKaza();
+                break;
+        }
     }
 }
